@@ -25,17 +25,28 @@ ol {
   --color-primary-text: #293b47;
   --color-secondary-text: #405a81;
   --color-tertiary-text: #8594af;
+  --color-white-text: #fdfdff;
 
   --color-primary-bg: #f1f3f6;
   --color-seconary-bg: #fffffd;
 
-  --color-gradient-1: #20a6e6;
-  --color-gradient-2: #c75bfa;
-  --color-gradient-3: #ff8a5c;
+  --color-primary-green: #45da45;
+  --color-primary-red: #f14b55;
+
+  --color-gradient-ramp1-solid: #20a6e6;
+  --color-gradient-ramp1: linear-gradient(
+    135deg,
+    rgba(32, 166, 230, 1) 0%,
+    rgba(199, 91, 250, 1) 50%,
+    rgba(255, 138, 92, 1) 100%
+  );
+  --color-gradient-color1: #20a6e6;
+  --color-gradient-color2: #c75bfa;
+  --color-gradient-color3: #ff8a5c;
 
   /* Spacing */
-  --spacing-x-small: 0.25rem;
-  --spacing-small: 0.5rem;
+  --spacing-x-small: 0.5rem;
+  --spacing-small: 0.75rem;
   --spacing-medium: 1rem;
   --spacing-large: 2rem;
   --spacing-x-large: 3rem;
@@ -50,6 +61,8 @@ ol {
   /* Boarder radius */
   --border-radius-small: 0.25rem;
   --border-radius-medium: 0.5rem;
+  --border-radius-large: 1rem;
+  --border-radius-x-large: 1rem;
 
   /* Layout widths */
   --layout-primary-width: 800px;

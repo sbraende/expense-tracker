@@ -1,0 +1,89 @@
+.cardSection {
+  padding: var(--spacing-large) 0;
+}
+
+.card {
+  position: relative;
+  width: 380px;
+  height: 220px;
+  border-radius: var(--border-radius-x-large);
+  color: var(--color-white-text);
+  background: var(--color-gradient-ramp1-solid);
+  background: var(--color-gradient-ramp1);
+
+  box-shadow: 0 0 0 24px var(--color-gradient-ramp1);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Help from AI for "gradient-dropshadow" */
+.card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 10px;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  background: var(--color-gradient-ramp1-solid);
+  background: var(--color-gradient-ramp1);
+  filter: blur(20px);
+  opacity: 0.75;
+}
+
+.totalBalanceContainer {
+  text-align: center;
+}
+
+.totalBalanceTitle {
+  padding-bottom: var(--spacing-medium);
+  font-size: var(--font-size-medium);
+  font-weight: 200;
+}
+
+.totalBalanceValue {
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: var(--font-size-x-large);
+}
+
+.incomeExpensesContainer {
+  padding: var(--spacing-large) var(--spacing-large) 0 var(--spacing-large);
+  display: flex;
+  justify-content: space-between;
+}
+
+.balanceContainer {
+  display: flex;
+  gap: var(--spacing-small);
+}
+
+.iconContainer {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrowUp {
+  color: var(--color-primary-green);
+}
+
+.arrowDown {
+  color: var(--color-primary-red);
+}
+
+.balanceTextContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.balanceTextTitle {
+  font-weight: 200;
+}
