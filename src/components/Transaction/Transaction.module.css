@@ -1,0 +1,40 @@
+.transactionItem {
+  padding: var(--spacing-small) var(--spacing-medium);
+  background-color: var(--color-seconary-bg);
+  border-radius: var(--border-radius-medium);
+  display: flex;
+  justify-content: space-between;
+}
+
+.iconDescriptionContainer {
+  display: flex;
+  gap: var(--spacing-small);
+  align-items: center;
+}
+
+.iconContainer {
+  width: 48px;
+  height: 48px;
+  background-color: orange;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  color: var(--color-white-text);
+}
+
+.priceDateContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-x-small);
+  align-items: end;
+}
+
+.dateText {
+  color: var(--color-tertiary-text);
+}

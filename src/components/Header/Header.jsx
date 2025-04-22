@@ -3,7 +3,7 @@ import styles from "./Header.module.css";
 
 const Header = () => {
   return (
-    <header className={styles.headerContainer}>
+    <header className={styles.header}>
       <div className={styles.profileContainer}>
         <div className={styles.profilePictureContainer}>
           <img
@@ -19,7 +19,6 @@ const Header = () => {
       </div>
       <div className={styles.settingsContainer}>
         <NavButton />
-        {/* <img className={styles.settingsIcon} src="icons/settings.svg" alt="Settings icon" /> */}
       </div>
     </header>
   );

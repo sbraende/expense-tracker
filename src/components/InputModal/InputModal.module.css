@@ -1,0 +1,26 @@
+.inputModalContainer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  /* top: 0; */
+  /* left: 0; */
+  /* overflow-y: auto; */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.form {
+  max-width: 400px;
+  padding: var(--spacing-large) var(--spacing-large);
+  background-color: var(--color-seconary-bg);
+}
+
+.inputTypeContainer {
+  display: flex;
+  justify-content: space-between;
+}

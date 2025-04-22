@@ -1,0 +1,32 @@
+.addContainer {
+  position: fixed;
+  bottom: var(--spacing-medium);
+  width: 54px;
+  height: 54px;
+  background: var(--color-gradient-ramp1-solid);
+  background: var(--color-gradient-ramp1);
+  border-radius: 50%;
+  transition: opacity 0.25s;
+}
+
+.addContainer::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 10px;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  background: var(--color-gradient-ramp1-solid);
+  background: var(--color-gradient-ramp1);
+  filter: blur(20px);
+  opacity: 0.5;
+}
+
+.addContainer:hover {
+  opacity: 0.8;
+}
+
+.icon {
+  color: var(--color-white-text);
+}

@@ -1,3 +1,37 @@
-.transactionsSection {
-  /* align-self: center; */
+.transactionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.filterContainer {
+  display: flex;
+  gap: var(--spacing-small);
+  align-items: center;
+  color: var(--color-tertiary-text);
+}
+
+.filterLabel {
+  display: block;
+}
+
+@media screen and (max-width: 420px) {
+  .filterLabel {
+    display: none;
+  }
+}
+
+.filterSelect {
+  padding: var(--spacing-x-small) var(--spacing-small);
+  border: none;
+  border-radius: var(--border-radius-medium);
+  color: inherit;
+  background-color: var(--color-seconary-bg);
+}
+
+.transactionsList {
+  padding: var(--spacing-medium) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x-small);
 }
