@@ -1,4 +1,6 @@
 .cardSection {
+  align-self: center;
+
   padding: var(--spacing-large) 0;
 }
 

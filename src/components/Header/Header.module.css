@@ -1,4 +1,4 @@
-.header {
+.headerContainer {
   width: 100%;
   max-width: var(--layout-primary-width);
   padding-top: var(--spacing-large);
