@@ -1,3 +1,5 @@
+/* RESET */
+
 * {
   padding: 0;
   margin: 0;
@@ -12,4 +14,59 @@ button {
 ul,
 ol {
   list-style: none;
+}
+
+/* VARIABLES */
+:root {
+  /* Colors */
+  --color-primary-white: #fff;
+  --color-primary-back: #171717;
+
+  --color-primary-text: #293b47;
+  --color-secondary-text: #405a81;
+  --color-tertiary-text: #8594af;
+
+  --color-primary-bg: #f1f3f6;
+  --color-seconary-bg: #fffffd;
+
+  --color-gradient-1: #20a6e6;
+  --color-gradient-2: #c75bfa;
+  --color-gradient-3: #ff8a5c;
+
+  /* Spacing */
+  --spacing-x-small: 0.25rem;
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+  --spacing-x-large: 3rem;
+
+  /* Font size */
+  --font-size-small: 0.5rem;
+  --font-size-base: 1rem;
+  --font-size-medium: 1.2rem;
+  --font-size-large: 1.5rem;
+  --font-size-x-large: 2rem;
+
+  /* Boarder radius */
+  --border-radius-small: 0.25rem;
+  --border-radius-medium: 0.5rem;
+
+  /* Layout widths */
+  --layout-primary-width: 800px;
+
+  /* Icon size */
+  --icon-size: 32px;
+}
+
+/* GLOBAL LAYOUT */
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary-text);
 }

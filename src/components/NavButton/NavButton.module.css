@@ -1,0 +1,14 @@
+.button {
+  background-color: var(--color-seconary-bg);
+  border-radius: var(--border-radius-medium);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonIcon {
+  padding: var(--spacing-x-small);
+  height: var(--icon-size);
+  width: var(--icon-size);
+}

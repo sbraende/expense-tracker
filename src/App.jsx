@@ -1,10 +1,13 @@
 import styles from "./App.module.css";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
-    <>
-      <p>This is a test</p>
-    </>
+    <div className={styles.container}>
+      <Header />
+      <main></main>
+      <footer></footer>
+    </div>
   );
 }
 

@@ -1,0 +1,33 @@
+.header {
+  width: 100%;
+  max-width: var(--layout-primary-width);
+  padding-top: var(--spacing-large);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profileContainer {
+  width: 100%;
+  display: flex;
+  gap: var(--spacing-small);
+  align-items: center;
+}
+
+.profilePicture {
+  height: 42px;
+  border-radius: 50%;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  color: var(--color-tertiary-text);
+}
+
+.settingsIcon {
+  height: 32px;
+}
