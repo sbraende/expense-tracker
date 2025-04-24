@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faShirt,
   faClapperboard,
-  faPaintbrush,
+  faPersonRunning,
   faBurger,
   faHouse,
   faBus,
@@ -20,7 +20,7 @@ const Transaction = ({ transactionData }) => {
       case "entertainment":
         return faClapperboard;
       case "hobby":
-        return faPaintbrush;
+        return faPersonRunning;
       case "food":
         return faBurger;
       case "housing":
@@ -49,8 +49,14 @@ const Transaction = ({ transactionData }) => {
 
   const amountObject = processAmount(transactionData.amount);
 
+  const openModal = (transactionData) => console.log("Should open up edit modal", transactionData);
   return (
-    <li className={styles.transactionItem}>
+    <li
+      onClick={() => {
+        openModal(transactionData);
+      }}
+      className={styles.transactionItem}
+    >
       <div className={styles.iconDescriptionContainer}>
         <div className={`${styles.iconContainer} ${styles[transactionData.category]}`}>
           <FontAwesomeIcon icon={icon} size="lg" className={styles.icon} transform="grow-4" />

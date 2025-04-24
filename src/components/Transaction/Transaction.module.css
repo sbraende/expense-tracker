@@ -4,6 +4,7 @@
   border-radius: var(--border-radius-medium);
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .iconDescriptionContainer {
