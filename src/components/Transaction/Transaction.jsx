@@ -41,13 +41,13 @@ const Transaction = ({ transactionData }) => {
     return new Date(timestamp).toISOString().split("T")[0];
   };
 
-  const processAmount = (amount) => {
-    const isPositive = amount >= 0;
-    const text = `${isPositive ? "" : "-"}$${Math.abs(amount)}`;
-    return { isPositive, text };
-  };
+  // const processAmount = (amount) => {
+  //   const isPositive = amount >= 0;
+  //   const text = `${isPositive ? "" : "-"}$${Math.abs(amount)}`;
+  //   return { isPositive, text };
+  // };
 
-  const amountObject = processAmount(transactionData.amount);
+  // const amountObject = processAmount(transactionData.amount);
 
   const openModal = (transactionData) => console.log("Should open up edit modal", transactionData);
   return (
@@ -72,9 +72,9 @@ const Transaction = ({ transactionData }) => {
       </div>
       <div className={styles.priceContainer}>
         <span
-          className={`${amountObject.isPositive ? styles.pricePositive : styles.priceNegative}`}
+          className={`${transactionData.isIncome ? styles.pricePositive : styles.priceNegative}`}
         >
-          {amountObject.text}
+          {`${transactionData.isIncome ? "" : "-"}$${transactionData.amount}`}
         </span>
       </div>
     </li>

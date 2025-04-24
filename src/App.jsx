@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import AddTransaction from "./components/AddTransaction/AddTransaction";
 import Balance from "./components/Balance/Balance";
@@ -8,16 +8,35 @@ import Transactions from "./components/Transactions/Transactions";
 import transactionsData from "./data/transactionsData";
 
 function App() {
-  const [balance, setBalance] = useState(0);
+  const [total, setTotal] = useState(0);
   const [income, setIncome] = useState(0);
-  const [expences, setExpences] = useState(0);
-  // const [transactions, setTransactions] = useState(transactionsData);
+  const [expense, setExpense] = useState(0);
+
+  const getTransactions = (transactionsData) => {
+    let totalIncome = 0;
+    let totalExpenses = 0;
+    transactionsData.forEach((transaction) => {
+      if (transaction.isIncome) {
+        totalIncome += transaction.amount;
+      } else {
+        totalExpenses += transaction.amount;
+      }
+      setIncome(totalIncome);
+      setExpense(totalExpenses);
+    });
+
+    setTotal(totalIncome - totalExpenses);
+  };
+
+  useEffect(() => {
+    getTransactions(transactionsData);
+  }, [transactionsData]);
 
   return (
     <>
       <Header />
       <main className={styles.main}>
-        <Balance />
+        <Balance total={total} income={income} expense={expense} />
         <Transactions transactionsData={transactionsData} />
       </main>
       <AddTransaction />
