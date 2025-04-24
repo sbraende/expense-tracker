@@ -1,7 +1,7 @@
 import styles from "./InputModal.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { expenseCategories, incomeCategories } from "../../data/categoriesData";
+import { capitalizeLetter } from "../../utilities/naming";
 
 const InputModal = ({ setOpenAddModal }) => {
   const [isIncome, setIsIncome] = useState(false);
@@ -12,7 +12,7 @@ const InputModal = ({ setOpenAddModal }) => {
     const formData = new FormData(e.target);
     formData.append("isIncome", isIncome);
     for (const p of formData.entries()) {
-      console.log(p);
+      // console.log(p);
     }
   };
 
@@ -30,6 +30,7 @@ const InputModal = ({ setOpenAddModal }) => {
                 isIncome ? styles.incomeExpensesButtonActive : ""
               }`}
               onClick={() => setIsIncome(!isIncome)}
+              type="button"
             >
               Income
             </button>
@@ -38,6 +39,7 @@ const InputModal = ({ setOpenAddModal }) => {
                 isIncome ? "" : styles.incomeExpensesButtonActive
               }`}
               onClick={() => setIsIncome(!isIncome)}
+              type="button"
             >
               Expenses
             </button>
@@ -67,22 +69,24 @@ const InputModal = ({ setOpenAddModal }) => {
             {isIncome ? (
               <select className={styles.select} name="category" id="category">
                 <option value="None">None</option>
-                <option value="salary">Salary</option>
-                <option value="investment">Investment</option>
-                <option value="benefits">Benefits</option>
-                <option value="bonus">Bonus</option>
-                <option value="other">Other</option>
+                {incomeCategories.map((category, i) => {
+                  return (
+                    <option key={i} value={category}>
+                      {capitalizeLetter(category)}
+                    </option>
+                  );
+                })}
               </select>
             ) : (
               <select className={styles.select} name="category" id="category">
                 <option value="None">None</option>
-                <option value="housing">Housing</option>
-                <option value="utilities">Utilities</option>
-                <option value="grocery">Groceries</option>
-                <option value="transportation">Transportation</option>
-                <option value="clothing">Clothing</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="other">Other</option>
+                {expenseCategories.map((category, i) => {
+                  return (
+                    <option key={i} value={category}>
+                      {capitalizeLetter(category)}
+                    </option>
+                  );
+                })}
               </select>
             )}
           </div>

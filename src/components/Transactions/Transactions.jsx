@@ -1,4 +1,5 @@
 import { allCategories } from "../../data/categoriesData";
+import { capitalizeLetter } from "../../utilities/naming";
 import Transaction from "../Transaction/Transaction";
 import styles from "./Transactions.module.css";
 
@@ -15,7 +16,7 @@ const Transactions = ({ transactionsData }) => {
             {allCategories.map((category, i) => {
               return (
                 <option key={i} value={category}>
-                  {category}
+                  {capitalizeLetter(category)}
                 </option>
               );
             })}
