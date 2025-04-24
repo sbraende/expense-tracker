@@ -13,41 +13,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Transaction = ({ transactionData }) => {
-  const iconBasedOnCategory = (category) => {
-    switch (category) {
-      case "clothing":
-        return faShirt;
-      case "entertainment":
-        return faClapperboard;
-      case "hobby":
-        return faPersonRunning;
-      case "food":
-        return faBurger;
-      case "housing":
-        return faHouse;
-      case "transportation":
-        return faBus;
-      case "utilities":
-        return faTag;
-      case "income":
-        return faSuitcase;
-      default:
-        return faMoneyCheckDollar;
-    }
+  const categoryIcons = {
+    clothing: faShirt,
+    entertainment: faClapperboard,
+    hobby: faPersonRunning,
+    food: faBurger,
+    housing: faHouse,
+    transportation: faBus,
+    utilities: faTag,
+    income: faSuitcase,
   };
-  const icon = iconBasedOnCategory(transactionData.category);
+
+  const icon = categoryIcons[transactionData.category] || faMoneyCheckDollar;
 
   const ISODateToNormalizedDate = (timestamp) => {
     return new Date(timestamp).toISOString().split("T")[0];
   };
-
-  // const processAmount = (amount) => {
-  //   const isPositive = amount >= 0;
-  //   const text = `${isPositive ? "" : "-"}$${Math.abs(amount)}`;
-  //   return { isPositive, text };
-  // };
-
-  // const amountObject = processAmount(transactionData.amount);
 
   const openModal = (transactionData) => console.log("Should open up edit modal", transactionData);
   return (

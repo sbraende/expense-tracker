@@ -1,20 +1,43 @@
 import styles from "./InputModal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
-const InputModal = () => {
+const InputModal = ({ setOpenAddModal }) => {
+  const [isIncome, setIsIncome] = useState(false);
+
+  const submitTransaction = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    formData.append("isIncome", isIncome);
+    for (const p of formData.entries()) {
+      console.log(p);
+    }
+  };
+
+  const closeAddModal = () => setOpenAddModal(false);
+
   return (
     <div className={styles.inputModalContainer}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={submitTransaction}>
         <h2 className={styles.formTitle}>Add Transaction</h2>
         <div className={styles.formGroup}>
           <label className={styles.label}>Type</label>
           <div className={styles.incomeExpensesButtonsContainer}>
-            <button className={`${styles.incomeExpensesButtons} ${styles.incomeButton}`}>
+            <button
+              className={`${styles.incomeExpensesButtons} ${
+                isIncome ? styles.incomeExpensesButtonActive : ""
+              }`}
+              onClick={() => setIsIncome(!isIncome)}
+            >
               Income
             </button>
             <button
-              className={`${styles.incomeExpensesButtons} ${styles.expensesButton} ${styles.incomeExpensesButtonActive}`}
+              className={`${styles.incomeExpensesButtons} ${
+                isIncome ? "" : styles.incomeExpensesButtonActive
+              }`}
+              onClick={() => setIsIncome(!isIncome)}
             >
               Expenses
             </button>
@@ -41,16 +64,27 @@ const InputModal = () => {
             <label className={styles.label} htmlFor="category">
               Category
             </label>
-            <select className={styles.select} name="category" id="category">
-              <option value="None">None</option>
-              <option value="housing">Housing</option>
-              <option value="utilities">Utilities</option>
-              <option value="grocery">Groceries</option>
-              <option value="transportation">Transportation</option>
-              <option value="clothing">Clothing</option>
-              <option value="entertainment">Entertainment</option>
-              <option value="other">Other</option>
-            </select>
+            {isIncome ? (
+              <select className={styles.select} name="category" id="category">
+                <option value="None">None</option>
+                <option value="salary">Salary</option>
+                <option value="investment">Investment</option>
+                <option value="benefits">Benefits</option>
+                <option value="bonus">Bonus</option>
+                <option value="other">Other</option>
+              </select>
+            ) : (
+              <select className={styles.select} name="category" id="category">
+                <option value="None">None</option>
+                <option value="housing">Housing</option>
+                <option value="utilities">Utilities</option>
+                <option value="grocery">Groceries</option>
+                <option value="transportation">Transportation</option>
+                <option value="clothing">Clothing</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="other">Other</option>
+              </select>
+            )}
           </div>
           {/* Note */}
           <div className={styles.formGroup}>
@@ -73,7 +107,13 @@ const InputModal = () => {
           <button className={`${styles.submitButton} ${styles.button}`} type="submit">
             SAVE
           </button>
-          <button className={`${styles.cancelButton} ${styles.button}`}>CANCEL</button>
+          <button
+            className={`${styles.cancelButton} ${styles.button}`}
+            type="button"
+            onClick={closeAddModal}
+          >
+            CANCEL
+          </button>
         </div>
       </form>
     </div>
