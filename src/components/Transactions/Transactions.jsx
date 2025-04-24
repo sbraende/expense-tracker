@@ -1,21 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { allCategories } from "../../data/categoriesData";
 import { capitalizeLetter } from "../../utilities/naming";
 import Transaction from "../Transaction/Transaction";
 import styles from "./Transactions.module.css";
 
 const Transactions = ({ transactionsData }) => {
-  const [filteredTransactions, setFilteredTransactions] = useState(transactionsData);
+  const [filterCategory, setFilterCategory] = useState("all");
 
   const updateFilter = (e) => {
-    if (e.target.value === "all") {
-      setFilteredTransactions(transactionsData);
-    } else {
-      setFilteredTransactions(() =>
-        transactionsData.filter((transaction) => transaction.category === e.target.value)
-      );
-    }
+    setFilterCategory(e.target.value);
   };
+
+  const filteredTransactions =
+    filterCategory === "all"
+      ? transactionsData
+      : transactionsData.filter((t) => t.category === filterCategory);
 
   return (
     <section className={styles.transactionsSection}>
@@ -27,7 +26,7 @@ const Transactions = ({ transactionsData }) => {
             <option value="all">All</option>
             {allCategories.map((category, i) => {
               return (
-                <option key={i} value={category}>
+                <option key={category} value={category}>
                   {capitalizeLetter(category)}
                 </option>
               );
