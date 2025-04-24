@@ -1,0 +1,58 @@
+const transactionsData = [
+  {
+    id: "0",
+    type: "income",
+    title: "Freelance",
+    amount: 5000,
+    category: "income",
+    note: "Graphic Design Ident",
+    date: new Date("2025-04-24").toISOString(),
+  },
+  {
+    id: "1",
+    type: "expense",
+    title: "Jernia",
+    amount: -50,
+    category: "housing",
+    note: "Frying pan",
+    date: new Date("2025-04-24").toISOString(),
+  },
+  {
+    id: "2",
+    type: "expense",
+    title: "Max burger",
+    amount: -50,
+    category: "food",
+    note: "",
+    date: new Date("2025-04-24").toISOString(),
+  },
+  {
+    id: "3",
+    type: "expense",
+    title: "Komplett.no",
+    amount: -100,
+    category: "utilities",
+    note: "Keyboard",
+    date: new Date("2025-03-10").toISOString(),
+  },
+  {
+    id: "4",
+    type: "expense",
+    title: "vy",
+    amount: -20,
+    category: "transportation",
+    note: "Train to Drammen",
+    date: new Date("2025-03-22").toISOString(),
+  },
+  {
+    id: "5",
+    type: "expense",
+    title: "thights.no",
+    amount: -55,
+    category: "clothing",
+    note: "Sports clothing",
+    date: new Date("2025-02-22").toISOString(),
+  },
+];
+
+export default transactionsData;

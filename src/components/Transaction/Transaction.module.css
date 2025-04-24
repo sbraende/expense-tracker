@@ -27,14 +27,68 @@
   color: var(--color-white-text);
 }
 
-.priceDateContainer {
+.detailsContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   gap: var(--spacing-x-small);
-  align-items: end;
+}
+
+.dateNoteContainer {
+  display: flex;
+  gap: var(--spacing-x-small);
+}
+
+.noteText {
+  color: var(--color-tertiary-text);
 }
 
 .dateText {
   color: var(--color-tertiary-text);
+}
+
+.priceContainer {
+  align-self: center;
+}
+
+.pricePositive {
+  color: var(--color-primary-green);
+}
+
+.priceNegative {
+  color: var(--color-primary-red);
+}
+
+/* Category colors */
+
+.clothing {
+  background-color: pink;
+}
+
+.entertainment {
+  background-color: rgb(160, 32, 32);
+}
+
+.hobby {
+  background-color: yellowgreen;
+}
+
+.food {
+  background-color: rgb(100, 206, 199);
+}
+
+.housing {
+  background-color: lightsalmon;
+}
+
+.transportation {
+  background-color: rgb(222, 129, 129);
+}
+
+.utilities {
+  background-color: rgb(212, 178, 244);
+}
+
+.income {
+  background-color: var(--color-primary-green);
 }

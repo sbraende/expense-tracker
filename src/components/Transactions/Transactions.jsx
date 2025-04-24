@@ -1,7 +1,7 @@
 import Transaction from "../Transaction/Transaction";
 import styles from "./Transactions.module.css";
 
-const Transactions = () => {
+const Transactions = ({ transactionsData }) => {
   return (
     <section className={styles.transactionsSection}>
       <header className={styles.transactionHeader}>
@@ -21,8 +21,9 @@ const Transactions = () => {
         </div>
       </header>
       <ul className={styles.transactionsList}>
-        <Transaction />
-        <Transaction />
+        {transactionsData.map((transactionData) => {
+          return <Transaction key={transactionData.id} transactionData={transactionData} />;
+        })}
       </ul>
     </section>
   );

@@ -1,19 +1,75 @@
 import styles from "./Transaction.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBurger } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShirt,
+  faClapperboard,
+  faPaintbrush,
+  faBurger,
+  faHouse,
+  faBus,
+  faTag,
+  faSuitcase,
+  faMoneyCheckDollar,
+} from "@fortawesome/free-solid-svg-icons";
 
-const Transaction = () => {
+const Transaction = ({ transactionData }) => {
+  const iconBasedOnCategory = (category) => {
+    switch (category) {
+      case "clothing":
+        return faShirt;
+      case "entertainment":
+        return faClapperboard;
+      case "hobby":
+        return faPaintbrush;
+      case "food":
+        return faBurger;
+      case "housing":
+        return faHouse;
+      case "transportation":
+        return faBus;
+      case "utilities":
+        return faTag;
+      case "income":
+        return faSuitcase;
+      default:
+        return faMoneyCheckDollar;
+    }
+  };
+  const icon = iconBasedOnCategory(transactionData.category);
+
+  const ISODateToNormalizedDate = (timestamp) => {
+    return new Date(timestamp).toISOString().split("T")[0];
+  };
+
+  const processAmount = (amount) => {
+    const isPositive = amount >= 0;
+    const text = `${isPositive ? "" : "-"}$${Math.abs(amount)}`;
+    return { isPositive, text };
+  };
+
+  const amountObject = processAmount(transactionData.amount);
+
   return (
     <li className={styles.transactionItem}>
       <div className={styles.iconDescriptionContainer}>
-        <div className={styles.iconContainer}>
-          <FontAwesomeIcon icon={faBurger} size="lg" className={styles.icon} transform="grow-4" />
+        <div className={`${styles.iconContainer} ${styles[transactionData.category]}`}>
+          <FontAwesomeIcon icon={icon} size="lg" className={styles.icon} transform="grow-4" />
         </div>
-        <h3>McDonalds</h3>
+        <div className={styles.detailsContainer}>
+          <h3>{transactionData.title}</h3>
+          <div className={styles.dateNoteContainer}>
+            <span className={styles.dateText}>{ISODateToNormalizedDate(transactionData.date)}</span>
+            <span>-</span>
+            <span className={styles.noteText}>{transactionData.note}</span>
+          </div>
+        </div>
       </div>
-      <div className={styles.priceDateContainer}>
-        <p className={styles.priceText}>-$45.00</p>
-        <p className={styles.dateText}>22.04.2025</p>
+      <div className={styles.priceContainer}>
+        <span
+          className={`${amountObject.isPositive ? styles.pricePositive : styles.priceNegative}`}
+        >
+          {amountObject.text}
+        </span>
       </div>
     </li>
   );
