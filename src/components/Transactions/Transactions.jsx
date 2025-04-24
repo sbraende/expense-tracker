@@ -1,3 +1,4 @@
+import { allCategories } from "../../data/categoriesData";
 import Transaction from "../Transaction/Transaction";
 import styles from "./Transactions.module.css";
 
@@ -10,13 +11,14 @@ const Transactions = ({ transactionsData }) => {
           <p className={styles.filterLabel}>Category</p>
           <select className={styles.filterSelect}>
             <option value="all">All</option>
-            <option value="housing">Housing</option>
-            <option value="utilities">Utilities</option>
-            <option value="grocery">Groceries</option>
-            <option value="transportation">Transportation</option>
-            <option value="clothing">Clothing</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="other">Other</option>
+
+            {allCategories.map((category, i) => {
+              return (
+                <option key={i} value={category}>
+                  {category}
+                </option>
+              );
+            })}
           </select>
         </div>
       </header>
