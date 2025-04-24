@@ -1,4 +1,4 @@
-export const incomeCategories = ["salery", "investment", "benefits", "other"];
+export const incomeCategories = ["salery", "investment", "benefits"];
 
 export const expenseCategories = [
   "housing",
@@ -7,7 +7,6 @@ export const expenseCategories = [
   "transportation",
   "clothing",
   "entertainment",
-  "other",
 ];
 
 export const allCategories = [...incomeCategories, ...expenseCategories];

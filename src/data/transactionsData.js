@@ -4,7 +4,7 @@ const transactionsData = [
     isIncome: true,
     title: "Freelance",
     amount: 5000,
-    category: "income",
+    category: "salery",
     note: "Graphic Design Ident",
     date: new Date("2025-04-24").toISOString(),
   },
