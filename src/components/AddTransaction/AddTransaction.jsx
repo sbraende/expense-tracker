@@ -2,9 +2,9 @@ import styles from "./AddTransaction.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const AddTransaction = ({ setOpenAddModal }) => {
+const AddTransaction = ({ setIsOpenAddModal }) => {
   const openAddModal = () => {
-    setOpenAddModal(true);
+    setIsOpenAddModal(true);
   };
 
   return (

@@ -57,10 +57,6 @@
   background: var(--color-gradient-ramp1);
 }
 
-.fieldset {
-  border: 0;
-}
-
 .label {
   padding-top: var(--spacing-medium);
   font-weight: 600;

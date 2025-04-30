@@ -11,7 +11,7 @@ function App() {
   const [total, setTotal] = useState(0);
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
-  const [openAddModal, setOpenAddModal] = useState(false);
+  const [isOpenAddModal, setIsOpenAddModal] = useState(false);
 
   const getTransactions = (transactionsData) => {
     let totalExpenses = 0;
@@ -41,8 +41,8 @@ function App() {
         <Balance total={total} income={income} expense={expense} />
         <Transactions transactionsData={transactionsData} />
       </main>
-      <AddTransaction setOpenAddModal={setOpenAddModal} />
-      {openAddModal && <InputModal setOpenAddModal={setOpenAddModal} />}
+      <AddTransaction setIsOpenAddModal={setIsOpenAddModal} />
+      {isOpenAddModal && <InputModal setIsOpenAddModal={setIsOpenAddModal} />}
     </>
   );
 }
