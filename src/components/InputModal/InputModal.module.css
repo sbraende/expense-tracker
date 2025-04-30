@@ -66,6 +66,15 @@
   font-weight: 600;
 }
 
+.titleInput {
+  width: 100%;
+  padding: var(--spacing-x-small) var(--spacing-small);
+  border: none;
+  border-radius: var(--border-radius-medium);
+  color: inherit;
+  background-color: var(--color-seconary-bg);
+}
+
 .amountInput {
   width: 80%;
   margin: 0 auto;
@@ -109,6 +118,15 @@
   color: inherit;
   background-color: var(--color-seconary-bg);
   text-align: center;
+}
+
+.errorContainer {
+  padding-top: var(--spacing-large);
+}
+
+.error {
+  text-align: center;
+  color: var(--color-primary-red);
 }
 
 .submitCancelButtonsContainer {

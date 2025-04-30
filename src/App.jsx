@@ -14,18 +14,19 @@ function App() {
   const [openAddModal, setOpenAddModal] = useState(false);
 
   const getTransactions = (transactionsData) => {
-    let totalIncome = 0;
     let totalExpenses = 0;
+    let totalIncome = 0;
+
     transactionsData.forEach((transaction) => {
       if (transaction.isIncome) {
         totalIncome += transaction.amount;
       } else {
         totalExpenses += transaction.amount;
       }
-      setIncome(totalIncome);
-      setExpense(totalExpenses);
     });
 
+    setIncome(totalIncome);
+    setExpense(totalExpenses);
     setTotal(totalIncome - totalExpenses);
   };
 

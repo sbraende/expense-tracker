@@ -47,7 +47,7 @@ const transactionsData = [
   {
     id: "5",
     isIncome: false,
-    title: "thights.no",
+    title: "tights.no",
     amount: 55,
     category: "clothing",
     note: "Sports clothing",
