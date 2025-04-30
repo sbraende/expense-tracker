@@ -36,7 +36,12 @@ const Transactions = ({ transactionsData }) => {
       </header>
       <ul className={styles.transactionsList}>
         {filteredTransactions.map((transactionData) => {
-          return <Transaction key={transactionData.id} transactionData={transactionData} />;
+          return (
+            <Transaction
+              key={transactionData.id}
+              transactionData={transactionData}
+            />
+          );
         })}
       </ul>
     </section>

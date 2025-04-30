@@ -2,8 +2,13 @@ import styles from "./InputModal.module.css";
 import { use, useState } from "react";
 import { expenseCategories, incomeCategories } from "../../data/categoriesData";
 import { capitalizeLetter } from "../../utilities/naming";
+import { v4 as uuidv4 } from "uuid";
 
-const InputModal = ({ setIsOpenAddModal }) => {
+const InputModal = ({
+  setIsOpenAddModal,
+  transactionsData,
+  setTransactionsData,
+}) => {
   // Set states
   const [error, setError] = useState("");
   const [transactionData, setTransactionData] = useState({
@@ -93,8 +98,22 @@ const InputModal = ({ setIsOpenAddModal }) => {
     }
 
     // Submit to local storage
-    // TODO: Remeber to get localStorage first
-    // localStorage.setItem("transactions", );
+    const transaction = {
+      id: uuidv4(),
+      isIncome: transactionData.isIncome,
+      title: transactionData.title,
+      amount: transactionData.amount,
+      category: transactionData.category,
+      note: transactionData.note,
+      date: transactionData.date,
+    };
+    const updatedTransactionsData = [...transactionsData, transaction];
+    localStorage.setItem(
+      "transactions",
+      JSON.stringify(updatedTransactionsData)
+    );
+    setTransactionsData(updatedTransactionsData);
+    setIsOpenAddModal(false);
   };
 
   // Handle close modal button
