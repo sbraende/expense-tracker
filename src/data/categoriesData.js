@@ -7,6 +7,7 @@ export const expenseCategories = [
   "transportation",
   "clothing",
   "entertainment",
+  "hobby",
 ];
 
 export const allCategories = [...incomeCategories, ...expenseCategories];

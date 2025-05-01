@@ -10,32 +10,47 @@ import {
   faTag,
   faSuitcase,
   faMoneyCheckDollar,
+  faMoneyBillTrendUp,
+  faHandHoldingDollar,
 } from "@fortawesome/free-solid-svg-icons";
+import { ISODateToNormalizedDate } from "../../utilities/dateAndTime";
 
-const Transaction = ({ transactionData }) => {
+const Transaction = ({
+  transactionData,
+  isOpenAddModal,
+  setEditMode,
+  setIsOpenAddModal,
+}) => {
   const categoryIcons = {
+    salery: faSuitcase,
+    investment: faMoneyBillTrendUp,
+    benefits: faHandHoldingDollar,
+    housing: faHouse,
+    utilities: faTag,
+    food: faBurger,
+    transportation: faBus,
     clothing: faShirt,
     entertainment: faClapperboard,
     hobby: faPersonRunning,
-    food: faBurger,
-    housing: faHouse,
-    transportation: faBus,
-    utilities: faTag,
-    income: faSuitcase,
   };
 
   const icon = categoryIcons[transactionData.category] || faMoneyCheckDollar;
 
-  const ISODateToNormalizedDate = (timestamp) => {
-    return new Date(timestamp).toISOString().split("T")[0];
+  const handleOpenModal = (id) => {
+    // Open modal
+    setIsOpenAddModal(true);
+
+    // Set values
+    setEditMode(id);
+
+    // Change submit bahavior (edit state in appliaction with id??)
+    console.log("Should open up edit modal", transactionData);
   };
 
-  const openModal = (transactionData) =>
-    console.log("Should open up edit modal", transactionData);
   return (
     <li
       onClick={() => {
-        openModal(transactionData);
+        handleOpenModal(transactionData.id);
       }}
       className={styles.transactionItem}
     >

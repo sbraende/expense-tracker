@@ -12,6 +12,7 @@ function App() {
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
   const [isOpenAddModal, setIsOpenAddModal] = useState(false);
+  const [editMode, setEditMode] = useState(null);
   const [transactionsData, setTransactionsData] = useState(
     JSON.parse(localStorage.getItem("transactions")) || []
   );
@@ -42,7 +43,12 @@ function App() {
       <Header />
       <main className={styles.main}>
         <Balance total={total} income={income} expense={expense} />
-        <Transactions transactionsData={transactionsData} />
+        <Transactions
+          transactionsData={transactionsData}
+          isOpenAddModal={isOpenAddModal}
+          setIsOpenAddModal={setIsOpenAddModal}
+          setEditMode={setEditMode}
+        />
       </main>
       <AddTransaction setIsOpenAddModal={setIsOpenAddModal} />
       {isOpenAddModal && (
@@ -50,6 +56,8 @@ function App() {
           setIsOpenAddModal={setIsOpenAddModal}
           transactionsData={transactionsData}
           setTransactionsData={setTransactionsData}
+          editMode={editMode}
+          setEditMode={setEditMode}
         />
       )}
     </>

@@ -4,7 +4,12 @@ import { capitalizeLetter } from "../../utilities/naming";
 import Transaction from "../Transaction/Transaction";
 import styles from "./Transactions.module.css";
 
-const Transactions = ({ transactionsData }) => {
+const Transactions = ({
+  transactionsData,
+  isOpenAddModal,
+  setIsOpenAddModal,
+  setEditMode,
+}) => {
   const [filterCategory, setFilterCategory] = useState("all");
 
   const updateFilter = (e) => {
@@ -40,6 +45,9 @@ const Transactions = ({ transactionsData }) => {
             <Transaction
               key={transactionData.id}
               transactionData={transactionData}
+              isOpenAddModal={isOpenAddModal}
+              setIsOpenAddModal={setIsOpenAddModal}
+              setEditMode={setEditMode}
             />
           );
         })}

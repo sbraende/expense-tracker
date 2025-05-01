@@ -1,13 +1,16 @@
 import styles from "./InputModal.module.css";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { expenseCategories, incomeCategories } from "../../data/categoriesData";
 import { capitalizeLetter } from "../../utilities/naming";
 import { v4 as uuidv4 } from "uuid";
+import { ISODateToNormalizedDate } from "../../utilities/dateAndTime";
 
 const InputModal = ({
   setIsOpenAddModal,
   transactionsData,
   setTransactionsData,
+  editMode,
+  setEditMode,
 }) => {
   // Set states
   const [error, setError] = useState("");
@@ -105,19 +108,52 @@ const InputModal = ({
       amount: transactionData.amount,
       category: transactionData.category,
       note: transactionData.note,
-      date: transactionData.date,
+      date: new Date(transactionData.date).toISOString(),
     };
-    const updatedTransactionsData = [...transactionsData, transaction];
-    localStorage.setItem(
-      "transactions",
-      JSON.stringify(updatedTransactionsData)
-    );
-    setTransactionsData(updatedTransactionsData);
+
+    if (!editMode) {
+      const updatedTransactions = [...transactionsData, transaction];
+      localStorage.setItem("transactions", JSON.stringify(updatedTransactions));
+      setTransactionsData(updatedTransactions);
+    } else {
+      const updatedTransactions = [...transactionsData];
+
+      const transactionIndex = transactionsData.findIndex(
+        (t) => t.id === editMode
+      );
+      updatedTransactions[transactionIndex] = transaction;
+
+      localStorage.setItem("transactions", JSON.stringify(updatedTransactions));
+      setTransactionsData(updatedTransactions);
+    }
+
     setIsOpenAddModal(false);
   };
 
   // Handle close modal button
-  const handleCloseAddModal = () => setIsOpenAddModal(false);
+  const handleCloseAddModal = () => {
+    setIsOpenAddModal(false);
+    setEditMode(null);
+  };
+
+  // Edit mode
+  useEffect(() => {
+    if (editMode) {
+      // editMode stores the id for current transaction
+      const transactionEdited = transactionsData.find(
+        (transaction) => transaction.id === editMode
+      );
+
+      setTransactionData({
+        isIncome: transactionEdited.isIncome,
+        title: transactionEdited.title,
+        amount: transactionEdited.amount,
+        category: transactionEdited.category,
+        note: transactionEdited.note,
+        date: ISODateToNormalizedDate(transactionEdited.date),
+      });
+    }
+  }, [editMode]);
 
   return (
     <div className={styles.inputModalContainer}>
