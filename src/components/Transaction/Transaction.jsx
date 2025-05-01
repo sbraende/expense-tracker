@@ -43,7 +43,7 @@ const Transaction = ({
   };
 
   return (
-    <li
+    <button
       onClick={() => {
         handleOpenModal(transactionData.id);
       }}
@@ -85,7 +85,7 @@ const Transaction = ({
           {`${transactionData.isIncome ? "" : "-"}$${transactionData.amount}`}
         </span>
       </div>
-    </li>
+    </button>
   );
 };
 

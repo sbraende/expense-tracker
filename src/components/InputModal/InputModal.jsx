@@ -17,7 +17,7 @@ const InputModal = ({
   const [transactionData, setTransactionData] = useState({
     isIncome: false,
     title: "",
-    amount: 0,
+    amount: "",
     category: "none",
     note: "",
     date: "",
@@ -29,11 +29,12 @@ const InputModal = ({
     setTransactionData({
       isIncome: !transactionData.isIncome,
       title: "",
-      amount: 0,
+      amount: "",
       category: "none",
       note: "",
       date: "",
     });
+    setError("");
   };
 
   // Validate current input field
@@ -104,10 +105,10 @@ const InputModal = ({
     const transaction = {
       id: uuidv4(),
       isIncome: transactionData.isIncome,
-      title: transactionData.title,
-      amount: transactionData.amount,
-      category: transactionData.category,
-      note: transactionData.note,
+      title: transactionData.title.trim(),
+      amount: transactionData.amount.trim(),
+      category: transactionData.category.trim(),
+      note: transactionData.note.trim(),
       date: new Date(transactionData.date).toISOString(),
     };
 
@@ -302,6 +303,7 @@ const InputModal = ({
             id="date"
             onChange={handleInput}
             value={transactionData.date}
+            placeholder="dd/mm/yyyy"
           />
         </div>
 

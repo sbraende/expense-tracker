@@ -4,7 +4,6 @@
   width: 100%;
   height: 100%;
   display: flex;
-  /* display: none; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -108,16 +107,22 @@
 
 .date {
   width: 100%;
-  padding: var(--spacing-x-small) var(--spacing-small);
+  height: var(--font-size-base);
+  padding: var(--spacing-medium) var(--spacing-medium);
   border: none;
   border-radius: var(--border-radius-medium);
   color: inherit;
   background-color: var(--color-seconary-bg);
   text-align: center;
+
+  /* Fix for mobile Safari */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .errorContainer {
-  padding-top: var(--spacing-large);
+  padding-top: var(--spacing-small);
 }
 
 .error {
@@ -146,13 +151,13 @@
   opacity: 0.8;
 }
 
-.deleteButton {
-  background-color: var(--color-primary-red);
+.submitButton {
+  margin-top: var(--spacing-medium);
+  background-color: rgb(92, 196, 92);
 }
 
-.submitButton {
-  margin-top: var(--spacing-large);
-  background-color: rgb(92, 196, 92);
+.deleteButton {
+  background-color: var(--color-primary-red);
 }
 
 .cancelButton {
