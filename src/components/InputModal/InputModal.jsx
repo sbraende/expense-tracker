@@ -128,9 +128,21 @@ const InputModal = ({
     }
 
     setIsOpenAddModal(false);
+    setEditMode(null);
   };
 
-  // Handle close modal button
+  const handleDelete = () => {
+    // const updatedTransactions = [...transactionsData];
+    const updatedTransactions = transactionsData.filter(
+      (t) => t.id !== editMode
+    );
+    localStorage.setItem("transactions", JSON.stringify(updatedTransactions));
+    setTransactionsData(updatedTransactions);
+    setIsOpenAddModal(false);
+    setEditMode(null);
+  };
+
+  // Handle close inputModal
   const handleCloseAddModal = () => {
     setIsOpenAddModal(false);
     setEditMode(null);
@@ -158,7 +170,9 @@ const InputModal = ({
   return (
     <div className={styles.inputModalContainer}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h2 className={styles.formTitle}>Add Transaction</h2>
+        <h2 className={styles.formTitle}>
+          {editMode ? "Edit Transaction" : "Add Transaction"}
+        </h2>
 
         {/* IncomeToggle */}
         <div className={styles.formGroup}>
@@ -292,9 +306,11 @@ const InputModal = ({
         </div>
 
         {/* Error */}
-        <div className={styles.errorContainer}>
-          {error && <p className={styles.error}>{error}</p>}
-        </div>
+        {error && (
+          <div className={styles.errorContainer}>
+            <p className={styles.error}>{error}</p>
+          </div>
+        )}
 
         {/* Submit and Cancel buttons */}
         <div className={styles.submitCancelButtonsContainer}>
@@ -302,8 +318,17 @@ const InputModal = ({
             className={`${styles.submitButton} ${styles.button}`}
             type="submit"
           >
-            SAVE
+            {editMode ? "SAVE EDIT" : "SAVE"}
           </button>
+          {editMode && (
+            <button
+              className={`${styles.deleteButton} ${styles.button}`}
+              type="button"
+              onClick={handleDelete}
+            >
+              DELETE TRANSACTION
+            </button>
+          )}
           <button
             className={`${styles.cancelButton} ${styles.button}`}
             type="button"

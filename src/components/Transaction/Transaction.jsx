@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faShirt,
   faClapperboard,
-  faPersonRunning,
+  faPalette,
   faBurger,
   faHouse,
   faBus,
@@ -31,20 +31,15 @@ const Transaction = ({
     transportation: faBus,
     clothing: faShirt,
     entertainment: faClapperboard,
-    hobby: faPersonRunning,
+    hobby: faPalette,
   };
 
   const icon = categoryIcons[transactionData.category] || faMoneyCheckDollar;
 
   const handleOpenModal = (id) => {
-    // Open modal
+    // Open Input Modal
     setIsOpenAddModal(true);
-
-    // Set values
     setEditMode(id);
-
-    // Change submit bahavior (edit state in appliaction with id??)
-    console.log("Should open up edit modal", transactionData);
   };
 
   return (

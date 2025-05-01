@@ -146,6 +146,10 @@
   opacity: 0.8;
 }
 
+.deleteButton {
+  background-color: var(--color-primary-red);
+}
+
 .submitButton {
   margin-top: var(--spacing-large);
   background-color: rgb(92, 196, 92);
