@@ -45,7 +45,8 @@ npm run dev
 
 - AI used to generate a CSS `gradient-drop-shadow` effect for the Balance component.
 - AI used to troubleshoot and correct default input styling for the date field on Mobile Safari.
-- AI used to add CSS `Click to Edit` functionality to transaction item.
+- AI used to add CSS `Click to Edit` styling to transaction item.
+- AI used to troubleshoot "controlled input to be uncontrolled" error when editing transaction type.
 
 ## Attribution
 

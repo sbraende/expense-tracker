@@ -9,3 +9,7 @@
 .addTransactionMessage {
   text-align: center;
 }
+
+.edit {
+  color: var(--color-tertiary-text);
+}

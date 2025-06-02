@@ -1,9 +1,10 @@
 import styles from "./InputModal.module.css";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { expenseCategories, incomeCategories } from "../../data/categoriesData";
 import { capitalizeLetter } from "../../utilities/naming";
 import { v4 as uuidv4 } from "uuid";
 import { ISODateToNormalizedDate } from "../../utilities/dateAndTime";
+import useValidateTransactionInput from "../../hooks/useValidateTransactionInput";
 
 const InputModal = ({
   setIsOpenAddModal,
@@ -13,7 +14,6 @@ const InputModal = ({
   setEditMode,
 }) => {
   // Set states
-  const [error, setError] = useState("");
   const [transactionData, setTransactionData] = useState({
     isIncome: false,
     title: "",
@@ -23,39 +23,19 @@ const InputModal = ({
     date: "",
   });
 
+  const { errors, validateTransactionInput } = useValidateTransactionInput();
+
   // Handle income toggle
   const handleIncomeToggle = () => {
-    // Toggle income and reset form
-    setTransactionData({
-      isIncome: !transactionData.isIncome,
-      title: "",
-      amount: "",
+    setTransactionData((prev) => ({
+      ...prev,
+      isIncome: !prev.isIncome,
       category: "none",
-      note: "",
-      date: "",
-    });
-    setError("");
-  };
-
-  // Validate current input field
-  const validateField = (name, value) => {
-    let errorMessage = "";
-
-    if (name === "title" && value.length > 30) {
-      errorMessage = "Title cannot be more than 30 characters long";
-    } else if (name === "title" && value === "") {
-      errorMessage = "Please add title to expense";
-    } else if (name === "amount" && value <= 0) {
-      errorMessage = "Please enter amount larger than 0";
-    } else if (name === "category" && value === "none") {
-      errorMessage = "Please select a category";
-    } else if (name === "note" && value.length > 50) {
-      errorMessage = "Note cannot be more than 50 characters long";
-    } else if (name === "date" && value === "") {
-      errorMessage = "Please select a date";
-    }
-
-    setError(errorMessage);
+      title: prev.title || "",
+      amount: prev.amount || "",
+      note: prev.note || "",
+      date: prev.date || "",
+    }));
   };
 
   // Handle input
@@ -63,9 +43,7 @@ const InputModal = ({
     const { name, value } = e.target;
 
     setTransactionData((prev) => {
-      const updatedData = { ...prev, [name]: value };
-      validateField(name, value);
-      return updatedData;
+      return { ...prev, [name]: value };
     });
   };
 
@@ -73,40 +51,15 @@ const InputModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let errorMessage = "";
-    let isValid = true;
-
-    if (transactionData.title.length > 30) {
-      errorMessage = "Title cannot be more than 30 characters long";
-      isValid = false;
-    } else if (transactionData.title === "") {
-      errorMessage = "Please add title to expense";
-      isValid = false;
-    } else if (transactionData.amount <= 0) {
-      errorMessage = "Please enter amount larger than 0";
-      isValid = false;
-    } else if (transactionData.category === "none") {
-      errorMessage = "Please select a category";
-      isValid = false;
-    } else if (transactionData.note.length > 50) {
-      errorMessage = "Note cannot be more than 50 characters long";
-      isValid = false;
-    } else if (transactionData.date === "") {
-      errorMessage = "Please select a date";
-      isValid = false;
-    }
-
-    setError(errorMessage);
-    if (!isValid) {
-      return;
-    }
+    // Validate
+    if (!validateTransactionInput(transactionData)) return;
 
     // Submit to local storage
     const transaction = {
       id: uuidv4(),
       isIncome: transactionData.isIncome,
       title: transactionData.title.trim(),
-      amount: transactionData.amount.trim(),
+      amount: transactionData.amount,
       category: transactionData.category.trim(),
       note: transactionData.note.trim(),
       date: new Date(transactionData.date).toISOString(),
@@ -133,7 +86,6 @@ const InputModal = ({
   };
 
   const handleDelete = () => {
-    // const updatedTransactions = [...transactionsData];
     const updatedTransactions = transactionsData.filter(
       (t) => t.id !== editMode
     );
@@ -216,7 +168,9 @@ const InputModal = ({
             id="title"
             onChange={handleInput}
             value={transactionData.title}
+            maxLength={50}
           />
+          {errors && <p className={styles.error}>{errors.title}</p>}
         </div>
 
         {/* Amount */}
@@ -233,6 +187,7 @@ const InputModal = ({
             onChange={handleInput}
             value={transactionData.amount}
           />
+          {errors && <p className={styles.error}>{errors.amount}</p>}
         </div>
 
         {/* Category */}
@@ -275,6 +230,7 @@ const InputModal = ({
               })}
             </select>
           )}
+          {errors && <p className={styles.error}>{errors.category}</p>}
         </div>
 
         {/* Note */}
@@ -288,6 +244,7 @@ const InputModal = ({
             id="note"
             onChange={handleInput}
             value={transactionData.note}
+            maxLength={200}
           ></textarea>
         </div>
 
@@ -305,14 +262,8 @@ const InputModal = ({
             value={transactionData.date}
             placeholder="dd/mm/yyyy"
           />
+          {errors && <p className={styles.error}>{errors.date}</p>}
         </div>
-
-        {/* Error */}
-        {error && (
-          <div className={styles.errorContainer}>
-            <p className={styles.error}>{error}</p>
-          </div>
-        )}
 
         {/* Submit and Cancel buttons */}
         <div className={styles.submitCancelButtonsContainer}>

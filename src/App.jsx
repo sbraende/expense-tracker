@@ -17,7 +17,7 @@ function App() {
     JSON.parse(localStorage.getItem("transactions")) || []
   );
 
-  const getTransactions = (transactionsData) => {
+  const calculateTotal = (transactionsData) => {
     let totalExpenses = 0;
     let totalIncome = 0;
 
@@ -35,7 +35,7 @@ function App() {
   };
 
   useEffect(() => {
-    getTransactions(transactionsData);
+    calculateTotal(transactionsData);
   }, [transactionsData]);
 
   return (
@@ -44,7 +44,6 @@ function App() {
       <main className={styles.main}>
         <Balance total={total} income={income} expense={expense} />
         <h1>Transactions</h1>
-
         {transactionsData.length === 0 ? (
           <p className={styles.addTransactionMessage}>
             Click + button to add a transaction
@@ -68,6 +67,7 @@ function App() {
           setEditMode={setEditMode}
         />
       )}
+      <p className={styles.edit}>(click on transaction to edit )</p>
     </>
   );
 }
