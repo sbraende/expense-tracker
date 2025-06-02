@@ -24,7 +24,6 @@ const Transactions = ({
   return (
     <section className={styles.transactionsSection}>
       <header className={styles.transactionHeader}>
-        <h1>Transactions</h1>
         <div className={styles.filterContainer}>
           <p className={styles.filterLabel}>Category</p>
           <select className={styles.filterSelect} onChange={updateFilter}>

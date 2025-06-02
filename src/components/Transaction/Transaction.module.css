@@ -1,4 +1,6 @@
 .transactionItem {
+  position: relative;
+  overflow: hidden;
   padding: var(--spacing-small) var(--spacing-medium);
   background-color: var(--color-seconary-bg);
   color: var(--color-primary-back);
@@ -7,6 +9,31 @@
   justify-content: space-between;
   cursor: pointer;
   font-size: var(--font-size-base);
+  transition: border 0.15s;
+}
+
+.transactionItem:hover {
+  border: 2px solid var(--color-gradient-color2);
+}
+
+.transactionItem::after {
+  content: "Click to Edit";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-text);
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  z-index: 2;
+}
+
+.transactionItem:hover::after {
+  opacity: 1;
 }
 
 .iconDescriptionContainer {

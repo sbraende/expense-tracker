@@ -43,12 +43,20 @@ function App() {
       <Header />
       <main className={styles.main}>
         <Balance total={total} income={income} expense={expense} />
-        <Transactions
-          transactionsData={transactionsData}
-          isOpenAddModal={isOpenAddModal}
-          setIsOpenAddModal={setIsOpenAddModal}
-          setEditMode={setEditMode}
-        />
+        <h1>Transactions</h1>
+
+        {transactionsData.length === 0 ? (
+          <p className={styles.addTransactionMessage}>
+            Click + button to add a transaction
+          </p>
+        ) : (
+          <Transactions
+            transactionsData={transactionsData}
+            isOpenAddModal={isOpenAddModal}
+            setIsOpenAddModal={setIsOpenAddModal}
+            setEditMode={setEditMode}
+          />
+        )}
       </main>
       <AddTransaction setIsOpenAddModal={setIsOpenAddModal} />
       {isOpenAddModal && (
