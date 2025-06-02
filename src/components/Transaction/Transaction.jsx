@@ -27,7 +27,7 @@ const Transaction = ({
     benefits: faHandHoldingDollar,
     housing: faHouse,
     utilities: faTag,
-    food: faBurger,
+    grocery: faBurger,
     transportation: faBus,
     clothing: faShirt,
     entertainment: faClapperboard,

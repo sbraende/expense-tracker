@@ -67,7 +67,9 @@ function App() {
           setEditMode={setEditMode}
         />
       )}
-      <p className={styles.edit}>(click on transaction to edit )</p>
+      {transactionsData.length !== 0 && (
+        <p className={styles.edit}>(click on transaction to edit )</p>
+      )}
     </>
   );
 }

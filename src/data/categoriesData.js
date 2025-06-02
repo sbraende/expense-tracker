@@ -3,11 +3,12 @@ export const incomeCategories = ["salery", "investment", "benefits"];
 export const expenseCategories = [
   "housing",
   "utilities",
-  "food",
+  "grocery",
   "transportation",
   "clothing",
   "entertainment",
   "hobby",
+  "other",
 ];
 
 export const allCategories = [...incomeCategories, ...expenseCategories];

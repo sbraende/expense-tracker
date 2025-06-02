@@ -7,12 +7,24 @@
 .filterContainer {
   display: flex;
   gap: var(--spacing-small);
-  align-items: center;
+  flex-wrap: wrap;
   color: var(--color-tertiary-text);
+}
+
+.filterGroup {
+  display: flex;
+  gap: var(--spacing-x-small);
+  align-items: center;
 }
 
 .filterLabel {
   display: block;
+}
+
+.resetFiltersButton {
+  color: var(--color-tertiary-text);
+  text-decoration: underline;
+  background-color: transparent;
 }
 
 @media screen and (max-width: 420px) {
